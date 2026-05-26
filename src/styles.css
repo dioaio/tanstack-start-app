@@ -1,0 +1,201 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap");
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * GIAM SAC — Industrial Design System
+ * Dark-first. Graphite blacks, brushed steel, welding orange.
+ */
+
+@theme inline {
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 8px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--surface-raised);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-foreground);
+  --color-secondary: var(--surface-raised);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-ember: var(--accent-ember);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--border);
+  --color-ring: var(--accent);
+  --color-ring-offset-background: var(--background);
+
+  --color-steel-100: oklch(0.92 0.005 240);
+  --color-steel-300: oklch(0.72 0.008 240);
+  --color-steel-500: oklch(0.45 0.008 240);
+  --color-steel-700: oklch(0.28 0.008 240);
+  --color-steel-900: oklch(0.18 0.006 240);
+
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --shadow-industrial: 0 30px 60px -20px oklch(0 0 0 / 0.6), 0 12px 24px -8px oklch(0 0 0 / 0.5);
+  --shadow-weld: 0 0 0 1px oklch(0.7 0.074 88 / 0.5), 0 0 24px oklch(0.68 0.099 88 / 0.32), 0 0 64px oklch(0.6 0.087 88 / 0.18);
+  --shadow-inset-edge: inset 0 1px 0 0 oklch(1 0 0 / 0.06), inset 0 -1px 0 0 oklch(0 0 0 / 0.4);
+}
+
+:root {
+  --radius: 2px;
+
+  /* Dark industrial — default */
+  --background: oklch(0.16 0.005 240);
+  --foreground: oklch(0.96 0.005 80);
+  --surface: oklch(0.21 0.006 240);
+  --surface-raised: oklch(0.26 0.008 240);
+  --muted-foreground: oklch(0.68 0.01 240);
+  --border: oklch(0.32 0.008 240);
+  --border-strong: oklch(0.42 0.008 240);
+  /* Welding ember — warm industrial orange grounded by graphite */
+  --accent: oklch(0.72 0.099 88);
+  --accent-foreground: oklch(0.14 0.005 240);
+  --accent-glow: oklch(0.82 0.087 88);
+  --accent-ember: oklch(0.62 0.112 88);
+  --destructive: oklch(0.6 0.22 25);
+
+  --gradient-steel: linear-gradient(
+    180deg,
+    oklch(0.28 0.008 240) 0%,
+    oklch(0.22 0.006 240) 50%,
+    oklch(0.18 0.006 240) 100%
+  );
+  --gradient-brushed: repeating-linear-gradient(
+    90deg,
+    oklch(1 0 0 / 0.015) 0px,
+    oklch(1 0 0 / 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  --gradient-graphite: radial-gradient(
+    ellipse at 50% 0%,
+    oklch(0.24 0.008 240) 0%,
+    oklch(0.16 0.005 240) 60%,
+    oklch(0.12 0.004 240) 100%
+  );
+  --gradient-weld: radial-gradient(
+    circle,
+    oklch(0.78 0.112 88 / 0.45) 0%,
+    oklch(0.62 0.099 88 / 0.22) 30%,
+    transparent 70%
+  );
+  --gradient-ember-line: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.78 0.099 88) 50%,
+    transparent 100%
+  );
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: oklch(0.65 0.04 60 / 0.35);
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+
+  .text-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .bg-graphite { background: var(--gradient-graphite); }
+  .bg-steel { background: var(--gradient-steel); }
+  .bg-brushed { background-image: var(--gradient-brushed); }
+  .bg-weld { background: var(--gradient-weld); }
+
+  .shadow-industrial { box-shadow: var(--shadow-industrial); }
+  .shadow-weld { box-shadow: var(--shadow-weld); }
+  .shadow-inset-edge { box-shadow: var(--shadow-inset-edge); }
+
+  .ember-rule {
+    height: 1px;
+    background: var(--gradient-ember-line);
+  }
+
+  .technical-grid {
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .mask-radial-fade {
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  .mask-vertical-fade {
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  }
+
+  .ink-sweep {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ink-sweep:hover { background-size: 100% 1px; }
+
+  @keyframes weld-flicker {
+    0%, 100% { opacity: 0.85; }
+    45% { opacity: 1; }
+    50% { opacity: 0.6; }
+    55% { opacity: 1; }
+  }
+  .animate-weld-flicker { animation: weld-flicker 6s ease-in-out infinite; }
+
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -8px, 0); }
+  }
+  .animate-drift { animation: drift 8s ease-in-out infinite; }
+}
